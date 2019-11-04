@@ -11,13 +11,15 @@ def run_game():
     run = 1
     #display setting
     scr = pg.display.set_mode((set.screen_w,set.screen_h))
-    scr.fill([51,153,255])
+    scr.fill(set.color)
     pg.display.set_caption("Testing")
-    color = (51,153,255)
     #Run Game
     ship1 = Ship(scr)
+    ship1.modmove(99)
     while run:
-        scr.fill([51,153,255])
+        gf.check_events(ship1)
+        ship1.update()
+        gf.update_screen(set,scr,ship1)
         ship1.blitme()
         for event in pg.event.get():
             if event.type == pg.QUIT: run=0
