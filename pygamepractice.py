@@ -16,14 +16,10 @@ def run_game():
     #Run Game
     ship1 = Ship(set,scr)
     ship1.modmove(99)
-    ship1.blitme()
+
     while True:
         gf.check_events(ship1)
         ship1.update()
         gf.update_screen(set,scr,ship1)
-
-        for event in pg.event.get():
-            if event.type == pg.QUIT: sys.exit()
-        pg.display.flip()
 
 run_game()

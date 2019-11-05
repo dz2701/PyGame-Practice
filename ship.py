@@ -22,5 +22,6 @@ class Ship():
         self.rect.centerx = int(self.center)
 
 
+
      def modmove(self,n):
         self.shipset.ship_speed = n
