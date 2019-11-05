@@ -10,6 +10,7 @@ class Ship():
          self.rect.bottom = self.screen_rect.bottom
          self.moving_right, self.moving_left = False, False
          self.center = float(self.rect.centerx)
+         self.shoot = False
 
      def blitme(self):
         self.screen.blit(self.image, self.rect)

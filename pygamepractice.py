@@ -3,23 +3,30 @@ import pygame as pg
 from settings import Settings
 from ship import Ship
 import game_functions as gf
+from bullet import Bullet
+
+from pygame.sprite import Group
 
 def run_game():
     #Initialize enviroment
     pg.init()
     set = Settings()
-    run = 1
     #display setting
     scr = pg.display.set_mode((set.screen_w,set.screen_h))
     scr.fill(set.color)
-    pg.display.set_caption("Testing")
-    #Run Game
+    pg.display.set_caption("Test game")
+    #Set ship1
     ship1 = Ship(set,scr)
-    ship1.modmove(99)
+    #set bullets
+    bullets = Group()
 
+
+    #run game
     while True:
-        gf.check_events(ship1)
+        gf.check_events(set,scr,ship1,bullets)
         ship1.update()
-        gf.update_screen(set,scr,ship1)
+        gf.update_bullets(bullets)
+        gf.update_screen(set,scr,ship1,bullets)
 
+#execute run game
 run_game()
