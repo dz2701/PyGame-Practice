@@ -1,6 +1,7 @@
 import sys
 import pygame
 from bullet import Bullet
+from enemy import Enemy
 
 def check_events(set,scr,ship,bullets):
     for event in pygame.event.get():
@@ -15,7 +16,7 @@ def update_screen(set, screen, ship, enemy, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
-    enemy.blitme()
+    enemy.draw(screen)
     pygame.display.flip()
 
 
@@ -38,3 +39,19 @@ def update_bullets(bullets,set):
     for bullet in bullets.copy():
         if bullet.rect.bottom <=0 or len(bullets.copy()) > set.bullets_allowed:
             bullets.remove(bullet)
+
+def create_fleet(set,scr,ship,enemy):
+    adv = Enemy(set,scr)
+    a_width = adv.rect.width
+    a_height = adv.rect.height
+    avsp_x = set.screen_w - 2*a_width
+    avsp_y = set.screen_h - 3*a_height - ship.rect.height
+    nr = int(avsp_y / (2*a_height))
+    n = int(avsp_x/(2*a_width))
+    for row in range(nr):
+        for an in range(n):
+            al = Enemy(set,scr)
+            al.x = a_width + 2*a_width*an
+            al.rect.x = al.x
+            al.rect.y = a_height + 2*a_height * row
+            enemy.add(al)
