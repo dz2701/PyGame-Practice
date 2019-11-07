@@ -32,8 +32,8 @@ def  check_keyup_events(event,set,scr,ship,bullets):
     elif event.key == pygame.K_UP: ship.shoot = False
 
 
-def update_bullets(bullets):
+def update_bullets(bullets,set):
     bullets.update()
     for bullet in bullets.copy():
-        if bullet.rect.bottom <=0:
+        if bullet.rect.bottom <=0 or len(bullets.copy()) > set.bullets_allowed:
             bullets.remove(bullet)
