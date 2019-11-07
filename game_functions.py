@@ -10,11 +10,12 @@ def check_events(set,scr,ship,bullets):
 
 
 
-def update_screen(set, screen, ship,bullets):
+def update_screen(set, screen, ship, enemy, bullets):
     screen.fill(set.color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    enemy.blitme()
     pygame.display.flip()
 
 

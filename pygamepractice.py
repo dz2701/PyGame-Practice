@@ -4,6 +4,7 @@ from settings import Settings
 from ship import Ship
 import game_functions as gf
 from bullet import Bullet
+from enemy import Enemy
 
 from pygame.sprite import Group
 
@@ -19,6 +20,7 @@ def run_game():
     ship1 = Ship(set,scr)
     #set bullets
     bullets = Group()
+    enemy1 = Enemy(set,scr)
 
 
     #run game
@@ -26,7 +28,7 @@ def run_game():
         gf.check_events(set,scr,ship1,bullets)
         ship1.update()
         gf.update_bullets(bullets,set)
-        gf.update_screen(set,scr,ship1,bullets)
+        gf.update_screen(set,scr,ship1, enemy1, bullets)
 
 #execute run game
 run_game()
