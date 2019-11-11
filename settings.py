@@ -16,7 +16,7 @@ class Settings():
         self.bullets_allowed = 3
 
         #enemy Settings
-        self.enemy_speed = 2
+        self.enemy_speed = 1
         self.drop_speed = 10
         #set direction 1 for right and -1 left
         self.fleet_direction =  1

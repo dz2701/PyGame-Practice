@@ -24,5 +24,9 @@ class Enemy(Sprite):
         self.scr.blit(self.image,self.rect)
 
     def update(self):
-        self.x = self.set.enemy_speed * self.set.fleet_direction
+        self.x += self.set.enemy_speed * self.set.fleet_direction
         self.rect.x = self.x
+
+    def check_edges(self):
+        if self.rect.right >= self.scr.get_rect().right: return True
+        elif self.rect.left <=0: return True

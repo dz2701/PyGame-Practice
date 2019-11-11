@@ -28,9 +28,10 @@ def run_game():
     while True:
         gf.check_events(set,scr,ship1,bullets)
         ship1.update()
-        enemy.update()
-        gf.update_bullets(bullets,set)
+        gf.update_bullets(enemy,bullets,set)
+        gf.update_aliens(set,enemy)
         gf.update_screen(set,scr,ship1, enemy, bullets)
+        if(len(enemy.sprites())==0):sys.exit()
 
 #execute run game
 run_game()

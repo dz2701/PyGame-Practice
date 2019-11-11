@@ -34,11 +34,12 @@ def  check_keyup_events(event,set,scr,ship,bullets):
     elif event.key == pygame.K_UP: ship.shoot = False
 
 
-def update_bullets(bullets,set):
+def update_bullets(enemy,bullets,set):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <=0:
             bullets.remove(bullet)
+    collisions = pygame.sprite.groupcollide(bullets,enemy,True,True)
 
 def create_fleet(set,scr,ship,enemy):
     adv = Enemy(set,scr)
@@ -55,3 +56,12 @@ def create_fleet(set,scr,ship,enemy):
             al.rect.x = al.x
             al.rect.y = a_height + 2*a_height * row
             enemy.add(al)
+
+def update_aliens(set,enemy):
+    for a in enemy.sprites():
+        if a.check_edges():
+            set.fleet_direction*=-1
+            for alien in enemy.sprites():
+                alien.rect.y += set.drop_speed
+            break
+    enemy.update()
