@@ -23,7 +23,7 @@ def update_screen(set, screen, ship, enemy, bullets):
 def check_keydown_events(event,set,scr,ship,bullets):
     if event.key == pygame.K_RIGHT: ship.moving_right = True
     elif event.key == pygame.K_LEFT: ship.moving_left = True
-    elif event.key == pygame.K_SPACE:
+    elif event.key == pygame.K_SPACE and len(bullets.copy()) < set.bullets_allowed:
         newb = Bullet(set,scr,ship)
         bullets.add(newb)
 
@@ -37,7 +37,7 @@ def  check_keyup_events(event,set,scr,ship,bullets):
 def update_bullets(bullets,set):
     bullets.update()
     for bullet in bullets.copy():
-        if bullet.rect.bottom <=0 or len(bullets.copy()) > set.bullets_allowed:
+        if bullet.rect.bottom <=0:
             bullets.remove(bullet)
 
 def create_fleet(set,scr,ship,enemy):

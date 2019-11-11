@@ -22,3 +22,7 @@ class Enemy(Sprite):
 
     def blitme(self):
         self.scr.blit(self.image,self.rect)
+
+    def update(self):
+        self.x = self.set.enemy_speed * self.set.fleet_direction
+        self.rect.x = self.x
